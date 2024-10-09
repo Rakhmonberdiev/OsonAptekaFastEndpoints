@@ -1,0 +1,26 @@
+[
+  {
+    "Id": 1,
+    "FullName": "Jamoliddin Rakhmonberdiev",
+    "BirthDate": "1999-12-12",
+    "ClassId": 1
+  },
+  {
+    "Id": 2,
+    "FullName": "John Doe",
+    "BirthDate": "2000-05-15",
+    "ClassId": 2
+  },
+  {
+    "Id": 3,
+    "FullName": "Alex Johnson",
+    "BirthDate": "1999-04-04",
+    "ClassId": 3
+  },
+  {
+    "Id": 4,
+    "FullName": "Jane Smith",
+    "BirthDate": "2000-03-04",
+    "ClassId": 4
+  }
+]
