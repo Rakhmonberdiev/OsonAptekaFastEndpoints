@@ -11,6 +11,8 @@ namespace OsonAptekaFastEndpoints.Extensions
             {
                 opt.UseSqlite(config.GetConnectionString("DbConnection"));
             });
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             return services;
         }
     }

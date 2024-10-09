@@ -6,28 +6,25 @@ using OsonAptekaFastEndpoints.ResponseDtos.StudentDtos;
 
 namespace OsonAptekaFastEndpoints.Endpoints.Student
 {
-    [HttpGet("students"), AllowAnonymous]
-    public class GetAll: EndpointWithoutRequest<List<StudentDto>>
+    [HttpGet("api/students"), AllowAnonymous]
+    public class GetAll: EndpointWithoutRequest<IEnumerable<StudentDto>>
     {
         private readonly AppDbContext _db;
-        public GetAll(AppDbContext db)
+        private readonly AutoMapper.IMapper _mapper;
+        public GetAll(AppDbContext db, AutoMapper.IMapper mapper)
         {
             _db = db;
+            _mapper = mapper;
+
         }
 
 
         public override async Task HandleAsync(CancellationToken ct)
         {
-            var students = await _db.Students.Include(c=>c.Class).ToListAsync();
-            var studentDtos = students.Select(s => new StudentDto
-            {
-                FullName = s.FullName,
-                BirthDate = s.BirthDate,
-                Class = s.Class.Name
-                
-            }).ToList();
+           var students = await _db.Students.Include(c=>c.Class).ToListAsync();
+           var studentsToReturn = _mapper.Map<List<StudentDto>>(students); 
            
-           await SendAsync(studentDtos);
+           await SendAsync(studentsToReturn);
         }
     }
 }
