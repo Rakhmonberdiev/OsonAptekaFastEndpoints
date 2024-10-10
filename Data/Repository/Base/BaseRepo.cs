@@ -15,6 +15,8 @@ namespace OsonAptekaFastEndpoints.Data.Repository.Base
         }
         public IStudentRepo StudentRepos => new StudentRepo(_db, _mapper);
 
+        public IClassRepo ClassRepos => new ClassRepo(_db, _mapper);
+
         public async Task<bool> Complete()
         {
             return await _db.SaveChangesAsync() > 0;
