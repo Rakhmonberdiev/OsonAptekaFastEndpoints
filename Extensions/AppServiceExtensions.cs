@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OsonAptekaFastEndpoints.Data;
+using OsonAptekaFastEndpoints.Data.Repository;
 
 namespace OsonAptekaFastEndpoints.Extensions
 {
@@ -13,6 +14,7 @@ namespace OsonAptekaFastEndpoints.Extensions
             });
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddScoped<IStudentRepo, StudentRepo>();
             return services;
         }
     }
