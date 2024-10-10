@@ -8,6 +8,7 @@ namespace OsonAptekaFastEndpoints.Validators
     {
         public StudentUpdateReqValidator()
         {
+            RuleFor(x=>x.Id).NotEmpty();
             RuleFor(x => x.FullName)
                 .NotEmpty()
                 .WithMessage("To'liq ism kiritishingiz shart")
