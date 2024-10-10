@@ -1,8 +1,6 @@
 ﻿using FastEndpoints;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.EntityFrameworkCore;
-using OsonAptekaFastEndpoints.Data;
-using OsonAptekaFastEndpoints.Data.Repository;
+using OsonAptekaFastEndpoints.Data.Repository.Base;
 using OsonAptekaFastEndpoints.ResponseDtos.StudentDtos;
 
 namespace OsonAptekaFastEndpoints.Endpoints.Student
@@ -10,8 +8,8 @@ namespace OsonAptekaFastEndpoints.Endpoints.Student
     [HttpGet("api/students"), AllowAnonymous]
     public class GetAll: EndpointWithoutRequest<IEnumerable<StudentDto>>
     {
-        private readonly IStudentRepo _repo;
-        public GetAll(IStudentRepo repo)
+        private readonly IBaseRepo _repo;
+        public GetAll(IBaseRepo repo)
         {
             _repo = repo;
 
@@ -21,7 +19,7 @@ namespace OsonAptekaFastEndpoints.Endpoints.Student
         public override async Task HandleAsync(CancellationToken ct)
         {
             
-           var students = await _repo.GetAll();
+           var students = await _repo.StudentRepos.GetAll();
            await SendAsync(students);
         }
     }
